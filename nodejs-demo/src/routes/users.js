@@ -3,13 +3,31 @@ const router = express.Router();
 
 const userControllers = require('../controllers/users');
 
-router.get('/get-all-users', userControllers.getAllUsers)
-router.get('/get-user-by-name-and-age', userControllers.getUserByNameAndAge)
+// get all users
+router.get('/users', userControllers.getAllUsers)
 
-// create user
-router.post('/create-user', userControllers.createUser)
+// get user by mane and age
+router.get('/users/user-by-name-and-age', userControllers.getUserByNameAndAge)
 
-// create many users
-router.post('/create-many-user', userControllers.createManyUser)
+function validate(req, res, next) {
+    const {username,password} = req.body;
+    console.log(username)
+    if (!username){
+        next("Username is required");
+    }
+    if( username.length > 20){
+        next("Username exceed 20 characters")
+    }
+    if (!password){
+        next("password is required");
+    }
+    if( password.length > 8){
+        next("Password exceed 8 characters")
+    }
+    next()
+}
+
+// create (namy) user
+router.post('/users', validate, userControllers.createUser)
 
 module.exports = router;
