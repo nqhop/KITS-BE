@@ -22,4 +22,6 @@ module.exports = {
 }
 
 // add: req.body, status use 3 ..; hande two players has the same name -> use middware
+
 // delete: use filter, have to asign new array to old arr and effect to perfoment. => use onother method
+// use splice
