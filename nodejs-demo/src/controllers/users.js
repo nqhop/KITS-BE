@@ -18,9 +18,10 @@ function getUserByNameAndAge(req, res) {
 }
 
 function createUser(req, res) {
-    const {userName, password, age} = req.body;
+    console.log('create user');
+    const {username, password, age} = req.body;
     res.send({
-        userName,
+        username,
         password,
         age
     })
