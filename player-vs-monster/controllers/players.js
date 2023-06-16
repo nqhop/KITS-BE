@@ -6,19 +6,24 @@ function getPlayers(req, res) {
 
 function getPlayerByName(req, res) {
     const { playerName } = req.params;
-    console.log("playerName:-", playerName.trim(),'-')
+    // console.log("playerName:-", playerName.trim(),'-')
     for (let player of players) {
-        console.log(player)
         if (player.name == playerName) {
-            console.log('player.name ', player.name)
-
             return res.send(player)
         }
     }
+    res.send('not found')
 }
+
+function addPlayer(req, res) {
+    const { name } = req.body;
+    console.log(name)
+}
+
 module.exports = {
     getPlayers,
-    getPlayerByName
+    getPlayerByName,
+    addPlayer
 }
 
 // add: req.body, status use 3 ..; hande two players has the same name -> use middware
